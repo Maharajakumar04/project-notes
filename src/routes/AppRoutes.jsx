@@ -22,12 +22,12 @@ export default function AppRoutes() {
         <Route path="/sign-up" element={<SignUp />} />
       </Route>
       <Route path="/dashboard" element={<DashboardLayouts />}>
-        <Route path="/dashboard/intro" element={<Intro />} />
-        <Route path="/dashboard/counter" element={<Counter />} />
-        <Route path="/dashboard/calc" element={<Calculator />} />
-        <Route path="/dashboard/todo-list" element={<TodoList />} />
-        <Route path="/dashboard/profile" element={<Profile />} />
-        <Route path="/dashboard/settings" element={<Settings />} />
+        <Route path="intro" element={<Intro />} />
+        <Route path="counter" element={<Counter />} />
+        <Route path="calc" element={<Calculator />} />
+        <Route path="todo-list" element={<TodoList />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="settings" element={<Settings />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />
