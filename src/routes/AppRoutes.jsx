@@ -10,7 +10,7 @@ import Counter from "../pages/dashboard/Counter";
 import Calculator from "../pages/dashboard/Calculator";
 import TodoList from "../pages/dashboard/TodoList";
 import Profile from "../pages/dashboard/Profile";
-import Settings from "../pages/dashboard/Settings";
+import PrivateRoute from "./PrivateRoute";
 
 export default function AppRoutes() {
   return (
@@ -21,13 +21,18 @@ export default function AppRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
       </Route>
-      <Route path="/dashboard" element={<DashboardLayouts />}>
-        <Route path="intro" element={<Intro />} />
-        <Route path="counter" element={<Counter />} />
-        <Route path="calc" element={<Calculator />} />
-        <Route path="todo-list" element={<TodoList />} />
-        <Route path="profile" element={<Profile />} />
-        <Route path="settings" element={<Settings />} />
+      <Route
+        path="/dashboard"
+        element={(
+          <PrivateRoute>
+            <DashboardLayouts />
+          </PrivateRoute>)}
+      >
+        <Route path="/dashboard/intro" element={<Intro />} />
+        <Route path="/dashboard/counter" element={<Counter />} />
+        <Route path="/dashboard/calc" element={<Calculator />} />
+        <Route path="/dashboard/todo-list" element={<TodoList />} />
+        <Route path="/dashboard/profile" element={<Profile />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

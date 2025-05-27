@@ -1,47 +1,16 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import AuthContext from '../context/AuthContext';
 
 export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+  const { register } = useContext(AuthContext);
 
   function handleSubmit(event) {
     event.preventDefault();
-    let db = localStorage.getItem('db');
-    if (db === null) {
-      db = {
-        users: [{ email, password }]
-      };
-      localStorage.setItem('users', JSON.stringify(db));
-      Swal.fire({
-        title: "Success",
-        text: "user created successfully",
-        icon: "success"
-      });
-      navigate('/login');
-    } else {
-      // already db exists
-      const existingUser = db.users.find((value) => {
-        return value.email === email;
-      });
-      if (existingUser) {
-        Swal.fire({
-          title: "Invalid",
-          text: "Already user exists",
-          icon: "error"
-        });
-      } else {
-        db.users = [...db.users, { email, password }]; 
-        Swal.fire({
-          title: "Success",
-          text: "user created successfully",
-          icon: "success"
-        });
-        navigate('/login');
-      }
-    }
+    register(email, password);
   }
 
   return (
